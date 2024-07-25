@@ -1,6 +1,5 @@
 package com.waitomo.phonebook.infrastructure.web.controllers;
 
-import com.waitomo.phonebook.application.services.ContactService;
 import com.waitomo.phonebook.application.usecases.CreateContactUseCase;
 import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.infrastructure.web.dtos.ContactRequestDTO;
