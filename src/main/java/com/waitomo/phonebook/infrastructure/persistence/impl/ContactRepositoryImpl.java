@@ -39,7 +39,7 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public Page<ContactResponseDTO> findAll(Pageable pageable) {
-        return null;
+        return findAll(pageable);
     }
 
     @Override
