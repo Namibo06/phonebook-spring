@@ -29,7 +29,7 @@ public class ContactImplService implements ContactService {
 
     @Override
     public Page<ContactResponse> findAllContactService(Pageable pageable) {
-        return contactRepository.findAll(pageable);
+        return contactRepository.findAllContacts(pageable);
     }
 
     @Override
