@@ -16,7 +16,7 @@ public interface ContactRepository {
 
     Optional<Contact> findByNumberPhone(String phone);
 
-    Page<ContactResponse> findAll(Pageable pageable);
+    Page<ContactResponse> findAllContacts(Pageable pageable);
 
     MessageStatusResponse update(String number, Contact contact);
 
