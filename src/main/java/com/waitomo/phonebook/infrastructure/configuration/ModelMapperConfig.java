@@ -21,7 +21,7 @@ public class ModelMapperConfig {
             @Override
             public ContactResponse convert(MappingContext<ContactEntity, ContactResponse> context) {
                 ContactEntity source = context.getSource();
-                return new ContactResponse(source.getName(),source.getNumberPhone());
+                return new ContactResponse(source.getId(), source.getName(),source.getNumberPhone());
             }
         };
 
