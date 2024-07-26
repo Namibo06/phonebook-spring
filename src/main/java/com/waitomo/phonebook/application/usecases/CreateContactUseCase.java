@@ -1,7 +1,8 @@
 package com.waitomo.phonebook.application.usecases;
 
 import com.waitomo.phonebook.application.services.ContactService;
-import com.waitomo.phonebook.domain.entities.Contact;
+import com.waitomo.phonebook.domain.exceptions.AlreadyExistsException;
+import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,11 +11,14 @@ public class CreateContactUseCase {
     @Autowired
     private ContactService contactService;
 
-    public Contact execute(String name,String number){
-        Contact contact = new Contact();
-        contact.setName(name);
-        contact.setNumberPhone(number);
+    public ContactEntity execute(ContactEntity contact){
+        if(contactService.existsContactService(contact.getNumberPhone())){
+            throw new AlreadyExistsException("Número");
+        }
+        ContactEntity contactUseCase = new ContactEntity();
+        contactUseCase.setName(contact.getName());
+        contactUseCase.setNumberPhone(contact.getNumberPhone());
 
-        return contactService.createContactService(contact);
+        return contactService.createContactService(contactUseCase);
     }
 }
