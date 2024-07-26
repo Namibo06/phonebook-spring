@@ -2,9 +2,10 @@ package com.waitomo.phonebook.infrastructure.persistence.impl;
 
 import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.domain.repositories.ContactRepository;
+import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.persistence.JpaContactRepository;
-import com.waitomo.phonebook.infrastructure.web.dtos.ContactResponseDTO;
-import com.waitomo.phonebook.infrastructure.web.dtos.MessageStatusResponseDTO;
+import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
+import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public Contact save(Contact contact) {
+    public ContactEntity save(ContactEntity contact) {
         return jpaContactRepository.save(contact);
     }
 
@@ -38,22 +39,22 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public Page<ContactResponseDTO> findAll(Pageable pageable) {
+    public Page<ContactResponse> findAll(Pageable pageable) {
         return findAll(pageable);
     }
 
     @Override
-    public MessageStatusResponseDTO update(String number, Contact contact) {
+    public MessageStatusResponse update(String number, Contact contact) {
         return null;
     }
 
     @Override
-    public MessageStatusResponseDTO delete(String number) {
+    public MessageStatusResponse delete(String number) {
         return null;
     }
 
     @Override
     public Boolean exists(String number) {
-        return null;
+        return jpaContactRepository.existsByNumberPhone(number);
     }
 }
