@@ -3,8 +3,9 @@ package com.waitomo.phonebook.application.services.impl;
 import com.waitomo.phonebook.application.services.ContactService;
 import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.domain.repositories.ContactRepository;
-import com.waitomo.phonebook.infrastructure.web.dtos.ContactResponseDTO;
-import com.waitomo.phonebook.infrastructure.web.dtos.MessageStatusResponseDTO;
+import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
+import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
+import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +23,12 @@ public class ContactImplService implements ContactService {
     }
 
     @Override
-    public Contact createContactService(Contact contact) {
+    public ContactEntity createContactService(ContactEntity contact) {
         return contactRepository.save(contact);
     }
 
     @Override
-    public Page<ContactResponseDTO> findAllContactService(Pageable pageable) {
+    public Page<ContactResponse> findAllContactService(Pageable pageable) {
         return contactRepository.findAll(pageable);
     }
 
@@ -42,12 +43,12 @@ public class ContactImplService implements ContactService {
     }
 
     @Override
-    public MessageStatusResponseDTO updateContactService(String number, Contact contact) {
+    public MessageStatusResponse updateContactService(String number, Contact contact) {
         return contactRepository.update(number,contact);
     }
 
     @Override
-    public MessageStatusResponseDTO deleteContactService(String number) {
+    public MessageStatusResponse deleteContactService(String number) {
         return contactRepository.delete(number);
     }
 

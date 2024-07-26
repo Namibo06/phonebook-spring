@@ -1,25 +1,26 @@
 package com.waitomo.phonebook.domain.repositories;
 
 import com.waitomo.phonebook.domain.entities.Contact;
-import com.waitomo.phonebook.infrastructure.web.dtos.ContactResponseDTO;
-import com.waitomo.phonebook.infrastructure.web.dtos.MessageStatusResponseDTO;
+import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
+import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
+import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
 public interface ContactRepository {
-    Contact save(Contact contact);
+    ContactEntity save(ContactEntity contact);
 
     Optional<Contact> findByName(String name);
 
     Optional<Contact> findByNumberPhone(String phone);
 
-    Page<ContactResponseDTO> findAll(Pageable pageable);
+    Page<ContactResponse> findAll(Pageable pageable);
 
-    MessageStatusResponseDTO update(String number, Contact contact);
+    MessageStatusResponse update(String number, Contact contact);
 
-    MessageStatusResponseDTO delete(String number);
+    MessageStatusResponse delete(String number);
 
     Boolean exists(String number);
 }
