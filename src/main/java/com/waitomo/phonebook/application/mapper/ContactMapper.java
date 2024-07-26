@@ -7,7 +7,6 @@ import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
 public class ContactMapper {
     public static Contact toDomain(ContactEntity contactEntity){
         return new Contact(
-                contactEntity.getId(),
                 contactEntity.getName(),
                 contactEntity.getNumberPhone()
         );
@@ -15,7 +14,6 @@ public class ContactMapper {
 
     public static ContactEntity toEntity(Contact contact){
         ContactEntity contactEntity = new ContactEntity();
-        contactEntity.setId(contact.getId());
         contactEntity.setName(contact.getName());
         contactEntity.setNumberPhone(contact.getNumberPhone());
         return contactEntity;
