@@ -6,6 +6,7 @@ import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.persistence.JpaContactRepository;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
 import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +18,12 @@ import java.util.Optional;
 public class ContactRepositoryImpl implements ContactRepository {
 
     private final JpaContactRepository jpaContactRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ContactRepositoryImpl(JpaContactRepository jpaContactRepository) {
+    public ContactRepositoryImpl(JpaContactRepository jpaContactRepository,ModelMapper modelMapper) {
         this.jpaContactRepository = jpaContactRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -39,8 +42,11 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public Page<ContactResponse> findAll(Pageable pageable) {
-        return findAll(pageable);
+    public Page<ContactResponse> findAllContacts(Pageable pageable) {
+        Page<ContactEntity> contactEntities = jpaContactRepository.findAll(pageable);
+        Page<ContactResponse> contactResponses = contactEntities.map(contactEntity -> modelMapper.map(contactEntity, ContactResponse.class));
+
+        return contactResponses;
     }
 
     @Override
