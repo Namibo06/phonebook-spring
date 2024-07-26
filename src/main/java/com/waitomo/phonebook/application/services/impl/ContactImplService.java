@@ -33,13 +33,8 @@ public class ContactImplService implements ContactService {
     }
 
     @Override
-    public Optional<Contact> findContactByNameService(String name) {
-        return contactRepository.findByName(name);
-    }
-
-    @Override
-    public Optional<Contact> findContactByNumberPhoneService(String number) {
-        return contactRepository.findByNumberPhone(number);
+    public Optional<ContactEntity> findContactByNameOrNumberService(String nameOrNumber) {
+        return contactRepository.findByNameOrNumber(nameOrNumber);
     }
 
     @Override

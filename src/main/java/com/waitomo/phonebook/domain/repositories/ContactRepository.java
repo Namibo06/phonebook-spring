@@ -12,9 +12,7 @@ import java.util.Optional;
 public interface ContactRepository {
     ContactEntity save(ContactEntity contact);
 
-    Optional<Contact> findByName(String name);
-
-    Optional<Contact> findByNumberPhone(String phone);
+    Optional<ContactEntity> findByNameOrNumber(String nameOrNumber);
 
     Page<ContactResponse> findAllContacts(Pageable pageable);
 

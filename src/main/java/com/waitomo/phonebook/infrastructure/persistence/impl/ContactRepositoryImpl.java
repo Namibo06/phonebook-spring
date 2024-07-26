@@ -32,14 +32,10 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public Optional<Contact> findByName(String name) {
-        return Optional.empty();
+    public Optional<ContactEntity> findByNameOrNumber(String nameOrNumber) {
+        return jpaContactRepository.findContactByNameOrNumberPhone(nameOrNumber);
     }
 
-    @Override
-    public Optional<Contact> findByNumberPhone(String phone) {
-        return Optional.empty();
-    }
 
     @Override
     public Page<ContactResponse> findAllContacts(Pageable pageable) {

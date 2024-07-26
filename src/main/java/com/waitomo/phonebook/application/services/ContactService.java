@@ -14,9 +14,7 @@ public interface ContactService {
 
     Page<ContactResponse> findAllContactService(Pageable pageable);
 
-    Optional<Contact> findContactByNameService(String name);
-
-    Optional<Contact> findContactByNumberPhoneService(String number);
+    Optional<ContactEntity> findContactByNameOrNumberService(String nameOrNumber);
 
     MessageStatusResponse updateContactService(String number, Contact contact);
 
