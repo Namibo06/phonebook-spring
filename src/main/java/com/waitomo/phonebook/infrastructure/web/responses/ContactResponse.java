@@ -1,19 +1,16 @@
 package com.waitomo.phonebook.infrastructure.web.responses;
 
-public class ContactResponse{
-    private final String name;
-    private final String numberPhone;
+import com.waitomo.phonebook.domain.entities.Contact;
 
-    public ContactResponse(String name, String numberPhone) {
-        this.name = name;
-        this.numberPhone = numberPhone;
+public class ContactResponse extends Contact {
+    private final Long id;
+
+    public ContactResponse(Long id,String name, String numberPhone) {
+        super(name,numberPhone);
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getNumberPhone() {
-        return numberPhone;
+    public Long getId(){
+        return id;
     }
 }
