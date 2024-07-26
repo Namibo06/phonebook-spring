@@ -1,10 +1,10 @@
-package com.waitomo.phonebook.infrastructure.web.dtos;
+package com.waitomo.phonebook.infrastructure.web.responses;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-public record ContactRequestDTO (
+public record ContactRequest(
         @NonNull
         @NotBlank
         @Size(max = 30, message = "Nome deve ter no máximo 30 caracteres")
