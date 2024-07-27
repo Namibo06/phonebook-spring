@@ -1,4 +1,4 @@
-package com.waitomo.phonebook.infrastructure.configuration;
+package com.waitomo.phonebook.application.mapper;
 
 import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
