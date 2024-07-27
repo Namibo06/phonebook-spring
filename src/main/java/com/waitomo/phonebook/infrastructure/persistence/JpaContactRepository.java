@@ -15,4 +15,7 @@ public interface JpaContactRepository extends JpaRepository<ContactEntity,Long>{
 
     @Query(value = "SELECT * FROM tb_contact WHERE name LIKE %:value% OR number_phone LIKE %:value%", nativeQuery = true)
     Optional<ContactEntity> findContactByNameOrNumberPhone(@Param("value") String nameOrNumber);
+
+
+    void deleteByNumberPhone(String number);
 }
