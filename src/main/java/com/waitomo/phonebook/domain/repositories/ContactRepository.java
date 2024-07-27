@@ -16,7 +16,7 @@ public interface ContactRepository {
 
     Page<ContactResponse> findAllContacts(Pageable pageable);
 
-    MessageStatusResponse update(String number, Contact contact);
+    ContactEntity update(String number, Contact contact);
 
     MessageStatusResponse delete(String number);
 
