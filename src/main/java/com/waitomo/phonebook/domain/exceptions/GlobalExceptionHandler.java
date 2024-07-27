@@ -20,4 +20,10 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), "Registro(s) não encontrado(s)");
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NullValuesException.class)
+    public ResponseEntity<ErrorResponse> handleNullValuesException(NullValuesException ex){
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), "Valores nulos");
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }
