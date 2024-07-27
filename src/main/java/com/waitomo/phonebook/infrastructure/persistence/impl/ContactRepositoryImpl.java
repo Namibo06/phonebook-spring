@@ -46,8 +46,18 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public MessageStatusResponse update(String number, Contact contact) {
-        return null;
+    public ContactEntity update(String number, Contact contact) {
+        Optional<ContactEntity> contactEntity = jpaContactRepository.findContactByNameOrNumberPhone(number);
+        contactEntity.map(contactModel -> {
+                    contactModel.setName(contact.getName());
+                    contactModel.setNumberPhone(contact.getNumberPhone());
+                    return contactModel;
+                });
+
+        ContactEntity contactSaved = modelMapper.map(contactEntity,ContactEntity.class);
+        jpaContactRepository.save(contactSaved);
+
+        return contactSaved;
     }
 
     @Override
