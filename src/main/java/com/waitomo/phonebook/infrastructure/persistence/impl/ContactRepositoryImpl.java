@@ -61,8 +61,8 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public MessageStatusResponse delete(String number) {
-        return null;
+    public void delete(String number) {
+        jpaContactRepository.deleteByNumberPhone(number);
     }
 
     @Override
