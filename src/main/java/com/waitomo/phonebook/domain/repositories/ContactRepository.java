@@ -18,7 +18,7 @@ public interface ContactRepository {
 
     ContactEntity update(String number, Contact contact);
 
-    MessageStatusResponse delete(String number);
+    void delete(String number);
 
     Boolean exists(String number);
 }

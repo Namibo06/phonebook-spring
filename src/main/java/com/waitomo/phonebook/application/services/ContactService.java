@@ -18,7 +18,7 @@ public interface ContactService {
 
     ContactEntity updateContactService(String number, Contact contact);
 
-    MessageStatusResponse deleteContactService(String number);
+    void deleteContactService(String number);
 
     Boolean existsContactService(String number);
 }
