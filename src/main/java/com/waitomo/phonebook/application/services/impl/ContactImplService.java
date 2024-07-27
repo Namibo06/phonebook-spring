@@ -38,7 +38,7 @@ public class ContactImplService implements ContactService {
     }
 
     @Override
-    public MessageStatusResponse updateContactService(String number, Contact contact) {
+    public ContactEntity updateContactService(String number, Contact contact) {
         return contactRepository.update(number,contact);
     }
 

@@ -16,7 +16,7 @@ public interface ContactService {
 
     Optional<ContactEntity> findContactByNameOrNumberService(String nameOrNumber);
 
-    MessageStatusResponse updateContactService(String number, Contact contact);
+    ContactEntity updateContactService(String number, Contact contact);
 
     MessageStatusResponse deleteContactService(String number);
 
