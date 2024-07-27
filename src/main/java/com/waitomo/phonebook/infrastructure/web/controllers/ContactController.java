@@ -4,6 +4,7 @@ import com.waitomo.phonebook.application.mapper.ContactMapper;
 import com.waitomo.phonebook.application.usecases.CreateContactUseCase;
 import com.waitomo.phonebook.application.usecases.FindAllContactUseCase;
 import com.waitomo.phonebook.application.usecases.FindContactByNameOrNumberUseCase;
+import com.waitomo.phonebook.application.usecases.UpdateContactUseCase;
 import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
@@ -35,6 +36,9 @@ public class ContactController {
     @Autowired
     private FindContactByNameOrNumberUseCase findContactByNameOrNumberUseCase;
 
+    @Autowired
+    private UpdateContactUseCase updateContactUseCase;
+
     @PostMapping
     public ResponseEntity<MessageStatusResponse> createContact(@RequestBody @Valid Contact contactRequest, UriComponentsBuilder uriBuilder) {
         ContactEntity contact = createContactUseCase.execute(ContactMapper.toEntity(contactRequest));
@@ -60,5 +64,12 @@ public class ContactController {
         ContactResponse contact = findContactByNameOrNumberUseCase.execute(nameOrNumber);
 
         return ResponseEntity.ok(contact);
+    }
+
+    @PutMapping("/{number}")
+    public ResponseEntity<MessageStatusResponse> updateContactByNumber(@PathVariable String number,@RequestBody @Valid Contact contact){
+        MessageStatusResponse response = updateContactUseCase.execute(number,contact);
+
+        return ResponseEntity.ok(response);
     }
 }
