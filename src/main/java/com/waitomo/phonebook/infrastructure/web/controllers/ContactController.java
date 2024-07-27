@@ -6,6 +6,7 @@ import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
 import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,7 @@ public class ContactController {
     private DeleteContactUseCase deleteContactUseCase;
 
     @PostMapping
+    @Operation(summary = "Cria um novo contato")
     public ResponseEntity<MessageStatusResponse> createContact(@RequestBody @Valid Contact contactRequest, UriComponentsBuilder uriBuilder) {
         ContactEntity contact = createContactUseCase.execute(ContactMapper.toEntity(contactRequest));
         Long contactId = contact.getId();
@@ -53,6 +55,7 @@ public class ContactController {
     }
 
     @GetMapping
+    @Operation(summary = "Recupera todos os contatos")
     public ResponseEntity<Page<ContactResponse>> findAllContacts(@PageableDefault(size = 50) Pageable pageable){
         Page<ContactResponse> contactsPage = findAllContactUseCase.execute(pageable);
 
@@ -60,6 +63,7 @@ public class ContactController {
     }
 
     @GetMapping("/{nameOrNumber}")
+    @Operation(summary = "Busca um contato")
     public ResponseEntity<ContactResponse> findContactByNameOrNumber(@PathVariable String nameOrNumber){
         ContactResponse contact = findContactByNameOrNumberUseCase.execute(nameOrNumber);
 
@@ -67,6 +71,7 @@ public class ContactController {
     }
 
     @PutMapping("/{number}")
+    @Operation(summary = "Atualiza um contato")
     public ResponseEntity<MessageStatusResponse> updateContactByNumber(@PathVariable String number,@RequestBody @Valid Contact contact){
         MessageStatusResponse response = updateContactUseCase.execute(number,contact);
 
@@ -74,6 +79,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/{number}")
+    @Operation(summary = "Deleta um contato")
     public ResponseEntity<Void> deleteContactByNumber(@PathVariable String number){
         deleteContactUseCase.execute(number);
 
