@@ -6,6 +6,7 @@ import com.waitomo.phonebook.domain.repositories.ContactRepository;
 import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
 import com.waitomo.phonebook.infrastructure.web.responses.MessageStatusResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,8 +44,9 @@ public class ContactImplService implements ContactService {
     }
 
     @Override
-    public MessageStatusResponse deleteContactService(String number) {
-        return contactRepository.delete(number);
+    @Transactional
+    public void deleteContactService(String number) {
+        contactRepository.delete(number);
     }
 
     @Override
