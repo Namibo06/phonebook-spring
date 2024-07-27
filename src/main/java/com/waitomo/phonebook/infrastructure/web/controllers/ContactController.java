@@ -1,10 +1,7 @@
 package com.waitomo.phonebook.infrastructure.web.controllers;
 
 import com.waitomo.phonebook.application.mapper.ContactMapper;
-import com.waitomo.phonebook.application.usecases.CreateContactUseCase;
-import com.waitomo.phonebook.application.usecases.FindAllContactUseCase;
-import com.waitomo.phonebook.application.usecases.FindContactByNameOrNumberUseCase;
-import com.waitomo.phonebook.application.usecases.UpdateContactUseCase;
+import com.waitomo.phonebook.application.usecases.*;
 import com.waitomo.phonebook.domain.entities.Contact;
 import com.waitomo.phonebook.infrastructure.persistence.ContactEntity;
 import com.waitomo.phonebook.infrastructure.web.responses.ContactResponse;
@@ -39,6 +36,9 @@ public class ContactController {
     @Autowired
     private UpdateContactUseCase updateContactUseCase;
 
+    @Autowired
+    private DeleteContactUseCase deleteContactUseCase;
+
     @PostMapping
     public ResponseEntity<MessageStatusResponse> createContact(@RequestBody @Valid Contact contactRequest, UriComponentsBuilder uriBuilder) {
         ContactEntity contact = createContactUseCase.execute(ContactMapper.toEntity(contactRequest));
@@ -71,5 +71,12 @@ public class ContactController {
         MessageStatusResponse response = updateContactUseCase.execute(number,contact);
 
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{number}")
+    public ResponseEntity<Void> deleteContactByNumber(@PathVariable String number){
+        deleteContactUseCase.execute(number);
+
+        return ResponseEntity.noContent().build();
     }
 }
