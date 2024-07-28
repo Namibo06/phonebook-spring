@@ -1,15 +1,16 @@
 spring:
   application:
-    name:phonebook
+    name: phonebook
 
   datasource:
-    url: jdbc:mysql://localhost:3306/phonebook_clean_arquitecture
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://postgres:5433/phonebook_clean_arquitecture
+    username: postgres
+    password: 123
 
   jpa:
     show-sql: true
-
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
