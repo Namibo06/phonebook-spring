@@ -136,3 +136,4 @@ phonebook
 
 ### ▪ responses (web):
 #### ↪ Vem como requisições,seja feito de um site em produção ou localmente através de uma ferramenta de testes como Insomnia,Postman,ou até mesmo Testes Unitários,ou vão como resposta a partir de algum processo.
+
