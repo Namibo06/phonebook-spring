@@ -2,14 +2,9 @@ package com.waitomo.phonebook.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
-import java.util.Objects;
 
-@Getter
-@Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,4 +19,28 @@ public class ContactEntity {
 
     @Column(name = "number_phone",unique = true,columnDefinition = "CHAR(11)",nullable = false)
     private String numberPhone;
+
+    public String getNumberPhone() {
+        return numberPhone;
+    }
+
+    public void setNumberPhone(String numberPhone) {
+        this.numberPhone = numberPhone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
