@@ -173,7 +173,7 @@ phonebook
 
 <br>
 
-### PUT | "/contacts"
+### PUT | "/contacts/{number}"
 ```
 1
 
@@ -185,7 +185,7 @@ phonebook
 
 <br>
 
-### DELETE | "/contacts"
+### DELETE | "/contacts/{number}"
 ```
 1
 ```
