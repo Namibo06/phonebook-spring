@@ -137,3 +137,55 @@ phonebook
 ### ▪ responses (web):
 #### ↪ Vem como requisições,seja feito de um site em produção ou localmente através de uma ferramenta de testes como Insomnia,Postman,ou até mesmo Testes Unitários,ou vão como resposta a partir de algum processo.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Exemplo de Testes no Swagger
+
+### POST | "/contacts"
+```
+{
+  "name": "teste",
+  "numberPhone": "75990000000"
+}
+```
+
+<br>
+
+### GET | "/contacts"
+```
+{
+  "page": 0,
+  "size": 1,
+  "sort": [
+   
+  ]
+}
+```
+
+<br>
+
+### GET | "/contacts/{nameOrNumber}"
+```
+{
+  "name": "teste"
+}
+```
+
+<br>
+
+### PUT | "/contacts"
+```
+1
+
+{
+  "name": "testando",
+  "numberPhone": "75990000001"
+}
+```
+
+<br>
+
+### DELETE | "/contacts"
+```
+1
+```
