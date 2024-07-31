@@ -1,12 +1,7 @@
 package com.waitomo.phonebook.infrastructure.persistence;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tb_contact")
 public class ContactEntity {
@@ -19,6 +14,16 @@ public class ContactEntity {
 
     @Column(name = "number_phone",unique = true,columnDefinition = "CHAR(11)",nullable = false)
     private String numberPhone;
+
+    public ContactEntity() {
+
+    }
+
+    public ContactEntity(Long id, String name, String numberPhone) {
+        this.id = id;
+        this.name = name;
+        this.numberPhone = numberPhone;
+    }
 
     public String getNumberPhone() {
         return numberPhone;
